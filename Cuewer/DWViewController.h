@@ -7,8 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
-@interface DWViewController : UIViewController
+@interface DWViewController : UIViewController  <FBLoginViewDelegate>
+{
+    IBOutlet UITextField * txtUser;
+    IBOutlet UITextField * txtPassword;
+    IBOutlet UIImageView * imgProfile;
+    IBOutlet UIButton    * btnLogin;
+    IBOutlet UILabel     * lblSignUp;
+    IBOutlet UIButton    * btnSignUp;
+}
+
+@property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *statusLabel;
+
 
 - (IBAction)onLogin:(UIButton *)sender;
 
@@ -18,6 +32,7 @@
 
 - (IBAction)closeKeyboard:(UITextField *)sender;
 
-
-
 @end
+
+
+

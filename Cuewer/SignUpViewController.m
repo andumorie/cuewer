@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    txtPassword.secureTextEntry = YES;
+    txtPasswordConfirm.secureTextEntry = YES;
     // Do any additional setup after loading the view from its nib.
 }
 

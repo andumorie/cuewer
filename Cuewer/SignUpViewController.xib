@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController">
             <connections>
+                <outlet property="txtPassword" destination="GY5-wd-K9J" id="uui-OA-Ff0"/>
+                <outlet property="txtPasswordConfirm" destination="aMu-Pb-BeP" id="60M-Ns-bi2"/>
+                <outlet property="txtUser" destination="fFC-FT-fpu" id="oQa-V9-u7S"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

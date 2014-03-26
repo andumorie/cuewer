@@ -23,6 +23,7 @@
 		A706D48318D8AED700CAC3FF /* DWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A706D48218D8AED700CAC3FF /* DWViewController.xib */; };
 		A767567418D8B63C00897E3C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767567218D8B63C00897E3C /* SignUpViewController.m */; };
 		A767567518D8B63C00897E3C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A767567318D8B63C00897E3C /* SignUpViewController.xib */; };
+		C35016CC18E303C00075D812 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35016CB18E303C00075D812 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		A767567118D8B63C00897E3C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		A767567218D8B63C00897E3C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		A767567318D8B63C00897E3C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		C35016CB18E303C00075D812 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A706D45118D8AE3400CAC3FF /* CoreGraphics.framework in Frameworks */,
+				C35016CC18E303C00075D812 /* FacebookSDK.framework in Frameworks */,
 				A706D45318D8AE3400CAC3FF /* UIKit.framework in Frameworks */,
 				A706D44F18D8AE3400CAC3FF /* Foundation.framework in Frameworks */,
 			);
@@ -106,6 +109,7 @@
 		A706D44D18D8AE3400CAC3FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C35016CB18E303C00075D812 /* FacebookSDK.framework */,
 				A706D44E18D8AE3400CAC3FF /* Foundation.framework */,
 				A706D45018D8AE3400CAC3FF /* CoreGraphics.framework */,
 				A706D45218D8AE3400CAC3FF /* UIKit.framework */,
@@ -121,10 +125,10 @@
 				A706D45E18D8AE3400CAC3FF /* DWAppDelegate.m */,
 				A706D47F18D8AEB200CAC3FF /* DWViewController.h */,
 				A706D48018D8AEB200CAC3FF /* DWViewController.m */,
+				A706D48218D8AED700CAC3FF /* DWViewController.xib */,
 				A767567118D8B63C00897E3C /* SignUpViewController.h */,
 				A767567218D8B63C00897E3C /* SignUpViewController.m */,
 				A767567318D8B63C00897E3C /* SignUpViewController.xib */,
-				A706D48218D8AED700CAC3FF /* DWViewController.xib */,
 				A706D46018D8AE3400CAC3FF /* Images.xcassets */,
 				A706D45518D8AE3400CAC3FF /* Supporting Files */,
 			);
@@ -378,6 +382,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/administrator/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cuewer/Cuewer-Prefix.pch";
 				INFOPLIST_FILE = "Cuewer/Cuewer-Info.plist";
@@ -391,6 +399,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/administrator/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cuewer/Cuewer-Prefix.pch";
 				INFOPLIST_FILE = "Cuewer/Cuewer-Info.plist";
