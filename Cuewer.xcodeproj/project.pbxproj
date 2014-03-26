@@ -19,6 +19,10 @@
 		A706D46A18D8AE3400CAC3FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A706D45218D8AE3400CAC3FF /* UIKit.framework */; };
 		A706D47218D8AE3400CAC3FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A706D47018D8AE3400CAC3FF /* InfoPlist.strings */; };
 		A706D47418D8AE3400CAC3FF /* CuewerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A706D47318D8AE3400CAC3FF /* CuewerTests.m */; };
+		A706D48118D8AEB200CAC3FF /* DWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A706D48018D8AEB200CAC3FF /* DWViewController.m */; };
+		A706D48318D8AED700CAC3FF /* DWViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A706D48218D8AED700CAC3FF /* DWViewController.xib */; };
+		A767567418D8B63C00897E3C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767567218D8B63C00897E3C /* SignUpViewController.m */; };
+		A767567518D8B63C00897E3C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A767567318D8B63C00897E3C /* SignUpViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,12 @@
 		A706D46F18D8AE3400CAC3FF /* CuewerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CuewerTests-Info.plist"; sourceTree = "<group>"; };
 		A706D47118D8AE3400CAC3FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A706D47318D8AE3400CAC3FF /* CuewerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CuewerTests.m; sourceTree = "<group>"; };
+		A706D47F18D8AEB200CAC3FF /* DWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWViewController.h; sourceTree = "<group>"; };
+		A706D48018D8AEB200CAC3FF /* DWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWViewController.m; sourceTree = "<group>"; };
+		A706D48218D8AED700CAC3FF /* DWViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWViewController.xib; sourceTree = "<group>"; };
+		A767567118D8B63C00897E3C /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		A767567218D8B63C00897E3C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		A767567318D8B63C00897E3C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +119,12 @@
 			children = (
 				A706D45D18D8AE3400CAC3FF /* DWAppDelegate.h */,
 				A706D45E18D8AE3400CAC3FF /* DWAppDelegate.m */,
+				A706D47F18D8AEB200CAC3FF /* DWViewController.h */,
+				A706D48018D8AEB200CAC3FF /* DWViewController.m */,
+				A767567118D8B63C00897E3C /* SignUpViewController.h */,
+				A767567218D8B63C00897E3C /* SignUpViewController.m */,
+				A767567318D8B63C00897E3C /* SignUpViewController.xib */,
+				A706D48218D8AED700CAC3FF /* DWViewController.xib */,
 				A706D46018D8AE3400CAC3FF /* Images.xcassets */,
 				A706D45518D8AE3400CAC3FF /* Supporting Files */,
 			);
@@ -221,6 +237,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A706D45918D8AE3400CAC3FF /* InfoPlist.strings in Resources */,
+				A706D48318D8AED700CAC3FF /* DWViewController.xib in Resources */,
+				A767567518D8B63C00897E3C /* SignUpViewController.xib in Resources */,
 				A706D46118D8AE3400CAC3FF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +259,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A706D45B18D8AE3400CAC3FF /* main.m in Sources */,
+				A706D48118D8AEB200CAC3FF /* DWViewController.m in Sources */,
+				A767567418D8B63C00897E3C /* SignUpViewController.m in Sources */,
 				A706D45F18D8AE3400CAC3FF /* DWAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +458,7 @@
 				A706D47918D8AE3400CAC3FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A706D47A18D8AE3400CAC3FF /* Build configuration list for PBXNativeTarget "CuewerTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +467,7 @@
 				A706D47C18D8AE3400CAC3FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

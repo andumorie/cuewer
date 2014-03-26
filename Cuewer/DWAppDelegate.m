@@ -7,6 +7,7 @@
 //
 
 #import "DWAppDelegate.h"
+#import "DWViewController.h"
 
 @implementation DWAppDelegate
 
@@ -15,6 +16,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    DWViewController * vc = [[DWViewController alloc] initWithNibName:@"DWViewController" bundle: nil];
+    
+    UINavigationController * nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nc;
     [self.window makeKeyAndVisible];
     return YES;
 }
