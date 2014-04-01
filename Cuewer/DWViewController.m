@@ -22,7 +22,7 @@
     txtPassword.secureTextEntry = YES;
     FBLoginView *loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
-    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 383);
+    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 350);
     loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
     loginView.delegate = self;
     [self.view addSubview:loginView];
@@ -37,9 +37,10 @@
     NSURL *imageURL = [NSURL URLWithString:userImageURL];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage *image = [UIImage imageWithData:imageData];
-    imgProfile.image = image;
     self.profilePictureView.profileID = user.id;
     self.nameLabel.text = user.name;
+
+    imgProfile.image = image;
     
 }
 
@@ -131,6 +132,8 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];// this will do the trick
 }
+
+
 
 
 

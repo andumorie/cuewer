@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignUpViewController : UIViewController
+@interface SignUpViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate>
 {
     IBOutlet UITextField * txtUser;
+    IBOutlet UITextField * txtEmail;
     IBOutlet UITextField * txtPassword;
     IBOutlet UITextField * txtPasswordConfirm;
+    
+    UIAlertView *alert;
+    BOOL succes;
 }
+
+
 
 @end

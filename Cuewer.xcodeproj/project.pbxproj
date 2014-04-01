@@ -24,6 +24,8 @@
 		A767567418D8B63C00897E3C /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A767567218D8B63C00897E3C /* SignUpViewController.m */; };
 		A767567518D8B63C00897E3C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A767567318D8B63C00897E3C /* SignUpViewController.xib */; };
 		C35016CC18E303C00075D812 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35016CB18E303C00075D812 /* FacebookSDK.framework */; };
+		FF83BD5818EB371E003DD9A6 /* VerifyNet.m in Sources */ = {isa = PBXBuildFile; fileRef = FF83BD5718EB371E003DD9A6 /* VerifyNet.m */; };
+		FFEB05FF18E61D0B0057CAB9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEB05FE18E61D0B0057CAB9 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		A767567218D8B63C00897E3C /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		A767567318D8B63C00897E3C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		C35016CB18E303C00075D812 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		FF83BD5618EB371E003DD9A6 /* VerifyNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyNet.h; sourceTree = "<group>"; };
+		FF83BD5718EB371E003DD9A6 /* VerifyNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyNet.m; sourceTree = "<group>"; };
+		FFEB05FE18E61D0B0057CAB9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A706D45118D8AE3400CAC3FF /* CoreGraphics.framework in Frameworks */,
+				FFEB05FF18E61D0B0057CAB9 /* FacebookSDK.framework in Frameworks */,
 				C35016CC18E303C00075D812 /* FacebookSDK.framework in Frameworks */,
 				A706D45318D8AE3400CAC3FF /* UIKit.framework in Frameworks */,
 				A706D44F18D8AE3400CAC3FF /* Foundation.framework in Frameworks */,
@@ -109,6 +115,7 @@
 		A706D44D18D8AE3400CAC3FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FFEB05FE18E61D0B0057CAB9 /* FacebookSDK.framework */,
 				C35016CB18E303C00075D812 /* FacebookSDK.framework */,
 				A706D44E18D8AE3400CAC3FF /* Foundation.framework */,
 				A706D45018D8AE3400CAC3FF /* CoreGraphics.framework */,
@@ -121,14 +128,11 @@
 		A706D45418D8AE3400CAC3FF /* Cuewer */ = {
 			isa = PBXGroup;
 			children = (
+				FF83BD5918EB4CF1003DD9A6 /* Utils */,
 				A706D45D18D8AE3400CAC3FF /* DWAppDelegate.h */,
 				A706D45E18D8AE3400CAC3FF /* DWAppDelegate.m */,
-				A706D47F18D8AEB200CAC3FF /* DWViewController.h */,
-				A706D48018D8AEB200CAC3FF /* DWViewController.m */,
-				A706D48218D8AED700CAC3FF /* DWViewController.xib */,
-				A767567118D8B63C00897E3C /* SignUpViewController.h */,
-				A767567218D8B63C00897E3C /* SignUpViewController.m */,
-				A767567318D8B63C00897E3C /* SignUpViewController.xib */,
+				FFEB060618E85DD00057CAB9 /* Login */,
+				FFEB060518E85DC30057CAB9 /* SignUp */,
 				A706D46018D8AE3400CAC3FF /* Images.xcassets */,
 				A706D45518D8AE3400CAC3FF /* Supporting Files */,
 			);
@@ -162,6 +166,43 @@
 				A706D47018D8AE3400CAC3FF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FF83BD5518EB3700003DD9A6 /* VerifyNet */ = {
+			isa = PBXGroup;
+			children = (
+				FF83BD5618EB371E003DD9A6 /* VerifyNet.h */,
+				FF83BD5718EB371E003DD9A6 /* VerifyNet.m */,
+			);
+			name = VerifyNet;
+			sourceTree = "<group>";
+		};
+		FF83BD5918EB4CF1003DD9A6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FF83BD5518EB3700003DD9A6 /* VerifyNet */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		FFEB060518E85DC30057CAB9 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				A767567118D8B63C00897E3C /* SignUpViewController.h */,
+				A767567218D8B63C00897E3C /* SignUpViewController.m */,
+				A767567318D8B63C00897E3C /* SignUpViewController.xib */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
+		FFEB060618E85DD00057CAB9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A706D47F18D8AEB200CAC3FF /* DWViewController.h */,
+				A706D48018D8AEB200CAC3FF /* DWViewController.m */,
+				A706D48218D8AED700CAC3FF /* DWViewController.xib */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +307,7 @@
 				A706D48118D8AEB200CAC3FF /* DWViewController.m in Sources */,
 				A767567418D8B63C00897E3C /* SignUpViewController.m in Sources */,
 				A706D45F18D8AE3400CAC3FF /* DWAppDelegate.m in Sources */,
+				FF83BD5818EB371E003DD9A6 /* VerifyNet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +427,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/administrator/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cuewer/Cuewer-Prefix.pch";
@@ -402,6 +445,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/administrator/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cuewer/Cuewer-Prefix.pch";

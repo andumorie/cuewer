@@ -17,6 +17,8 @@
     IBOutlet UIButton    * btnLogin;
     IBOutlet UILabel     * lblSignUp;
     IBOutlet UIButton    * btnSignUp;
+    
+    BOOL succes;
 }
 
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
