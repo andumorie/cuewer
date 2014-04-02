@@ -8,6 +8,7 @@
 
 #import "SignUpViewController.h"
 #import "VerifyNet.h"
+#import "AFNetworking.h"
 
 @interface SignUpViewController ()
 
@@ -46,69 +47,50 @@
 
 - (IBAction) callSignUp {
 
-    
-    self.navigationItem.hidesBackButton = YES;
+    [self.view endEditing:YES];
     
     VerifyNet * vn = [[VerifyNet alloc] init];
     if ([vn hasConnectivity]) {
         
         [self showLoading];
         
-        NSString *urlAsString = @"http://cuewer-api.herokuapp.com/users";
-        NSURL *url = [NSURL URLWithString:urlAsString];
         
-        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-        [urlRequest setTimeoutInterval:30.0f];
-        [urlRequest setHTTPMethod:@"POST"];
-        
-        NSString *username = [NSString stringWithFormat:@"username=%@",txtUser.text];
-        NSString *email = [NSString stringWithFormat:@"email=%@",txtEmail.text];
-        NSString *password = [NSString stringWithFormat:@"password=%@",txtPassword.text];
-        NSString *confirmPassord = [NSString stringWithFormat:@"confirmpassword=%@",txtPasswordConfirm.text];
-        [urlRequest setHTTPBody:[username dataUsingEncoding:NSUTF8StringEncoding]];
-        [urlRequest setHTTPBody:[email dataUsingEncoding:NSUTF8StringEncoding]];
-        [urlRequest setHTTPBody:[password dataUsingEncoding:NSUTF8StringEncoding]];
-        [urlRequest setHTTPBody:[confirmPassord dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        
-        [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        NSDictionary *parameters = @{
+                                        @"username": txtUser.text,
+                                        @"password": txtPassword.text,
+                                        @"confirmpassword": txtPasswordConfirm.text,
+                                        @"email": txtEmail.text,
+                                    };
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager POST:@"http://cuewer-api.herokuapp.com/users" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
             
-            if ([data length] > 0 && error == nil) {
-                NSString *response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                NSLog(@"response = %@", response);
-                @try {
-                    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                    NSString * str = [json objectForKey:@"success"];
-                    if ([str isEqualToString:@"true"])
-                        succes = YES;
-                    else succes = NO;
-                }
-                @catch (NSException *exception) {
-                    succes = NO;
-                }
-                //[self showPopUpWithDesc:succes];
-            }else if ([data length] == 0 && error == nil){
-                NSLog(@"error");
-            }else if (error != nil){
-                NSLog(@"Error Happend = %@", error);
+            // parse responseObject here
+            NSString *success = [responseObject valueForKey:@"success"];
+            
+            BOOL suc;
+            if ([success isEqualToString:@"true"]) {
+                suc = YES;
             }
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^
-             {
-                 // Your code that presents the alert view(s)]]
-                 [self showPopUp:succes];
-                 [self hideLoading];
-             }];
+            else {
+                suc = NO;
+            }
             
-            
+            [self showPopUp:suc];
+            [self hideLoading];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+            [self showPopUp:NO];
+            [self hideLoading];
         }];
-    
+        
     }
     
     
 }
 
-# pragma alert
+#pragma alert
 
 - (void) showLoading
 {
@@ -154,8 +136,6 @@
 }
 
 
-
-
 - (void) hideLoading
 {
     [alert dismissWithClickedButtonIndex:77 animated:YES];
@@ -170,25 +150,24 @@
     return YES;
 }
 
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self animateTextField:textField up:YES];
+    [self animateTextField: textField up: YES];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self animateTextField:textField up:NO];
+    [self animateTextField: textField up: NO];
 }
 
--(void)animateTextField:(UITextField*)textField up:(BOOL)up
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
 {
-    const int movementDistance = -100; // tweak as needed
+    const int movementDistance = 160; // tweak as needed
     const float movementDuration = 0.3f; // tweak as needed
     
-    int movement = (up ? movementDistance : -movementDistance);
+    int movement = (up ? -movementDistance : movementDistance);
     
-    [UIView beginAnimations: @"animateTextField" context: nil];
+    [UIView beginAnimations: @"anim" context: nil];
     [UIView setAnimationBeginsFromCurrentState: YES];
     [UIView setAnimationDuration: movementDuration];
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
@@ -196,6 +175,12 @@
 }
 
 
+- (IBAction)closeKeyboard:(UITextField *)sender {
+    [sender resignFirstResponder];
+}
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];// this will do the trick
+}
 
 @end

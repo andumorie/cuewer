@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface DWViewController : UIViewController  <FBLoginViewDelegate>
+@interface DWViewController : UIViewController  <UITextFieldDelegate,UIAlertViewDelegate,FBLoginViewDelegate>
 {
     IBOutlet UITextField * txtUser;
     IBOutlet UITextField * txtPassword;
@@ -19,6 +19,8 @@
     IBOutlet UIButton    * btnSignUp;
     
     BOOL succes;
+    
+    UIAlertView *alert;
 }
 
 @property (strong, nonatomic) IBOutlet FBProfilePictureView *profilePictureView;
@@ -27,8 +29,6 @@
 
 
 - (IBAction)onLogin:(UIButton *)sender;
-
-- (IBAction)onFacebookLogin:(UIButton *)sender;
 
 - (IBAction)onSignUp:(UIButton *)sender;
 
