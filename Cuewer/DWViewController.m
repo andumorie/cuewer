@@ -10,6 +10,8 @@
 #import "SignUpViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "AFNetworking.h"
+#import "DWHomeViewController.h"
+#import "DWAppDelegate.h"
 
 @interface DWViewController ()
 
@@ -23,14 +25,18 @@
     txtUser.delegate = self;
     txtPassword.delegate = self;
     txtPassword.secureTextEntry = YES;
-    FBLoginView *loginView = [[FBLoginView alloc] init];
+    //loginView = [[FBLoginView alloc] init];
     // Align the button in the center horizontally
-    loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 350);
-    loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
-    loginView.delegate = self;
-    [self.view addSubview:loginView];
-
-	// Do any additional setup after loading the view, typically from a nib.
+    //loginView.frame = CGRectOffset(loginView.frame, (self.view.center.x - (loginView.frame.size.width / 2)), 350);
+//    loginView.frame = CGRectMake(40, 350, 240, 50);
+//    loginView.readPermissions = @[@"basic_info", @"email", @"user_likes"];
+//    loginView.delegate = self;
+//    [self.view addSubview:loginView];
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    // getting an NSString
+    NSString *myString = [prefs stringForKey:@"UserName"];
+    txtUser.text = myString;
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
@@ -55,11 +61,11 @@
     txtPassword.hidden = YES;
     txtUser.hidden = YES;
     self.statusLabel.text = @"You're logged in as";
+    DWAppDelegate * delegate = (DWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate.window.rootViewController = delegate.tabBarController;
 }
 
 -(void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    self.profilePictureView.profileID = nil;
-    imgProfile.image = nil;
     self.nameLabel.text = @"";
     lblSignUp.hidden = NO;
     btnLogin.hidden = NO;
@@ -155,14 +161,21 @@
 - (IBAction)onSignUp:(UIButton *)sender {
     SignUpViewController * signUpVC = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle: nil];
     [self.navigationController pushViewController: signUpVC animated: YES];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma textfield
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
-    
+    if (textField == txtPassword)
+    {
+        [textField resignFirstResponder];
+        [self onLogin: btnLogin];
+    } else if (textField == txtUser) {
+        [txtPassword becomeFirstResponder];
+    }
+
     return YES;
 }
 
@@ -196,7 +209,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self.view endEditing:YES];// this will do the trick
+    [self.view endEditing:YES]; // this will do the trick
 }
 
 #pragma alert
@@ -239,7 +252,23 @@
     
     if([title isEqualToString:@"OK"])
     {
-        [self.navigationController popViewControllerAnimated:YES];
+        /*
+        lblSignUp.hidden = YES;
+        btnLogin.hidden = YES;
+        btnSignUp.hidden = YES;
+        txtPassword.hidden = YES;
+        txtUser.hidden = YES;
+        self.statusLabel.text = @"You're logged in as";
+        self.nameLabel.text = txtUser.text;
+        btnLogout.hidden = NO;
+        loginView.hidden = YES;
+        */
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setObject:txtUser.text forKey:@"UserName"];
+        [prefs setObject:txtPassword.text forKey:@"Password"];
+
+        DWAppDelegate * delegate = (DWAppDelegate *)[[UIApplication sharedApplication] delegate];
+        delegate.window.rootViewController = delegate.tabBarController;
     }
 }
 

@@ -17,6 +17,8 @@
     IBOutlet UIButton    * btnLogin;
     IBOutlet UILabel     * lblSignUp;
     IBOutlet UIButton    * btnSignUp;
+    IBOutlet UIButton    * btnLogout;
+    FBLoginView          * loginView;
     
     BOOL succes;
     

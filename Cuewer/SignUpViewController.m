@@ -9,6 +9,7 @@
 #import "SignUpViewController.h"
 #import "VerifyNet.h"
 #import "AFNetworking.h"
+#import "DWAppDelegate.h"
 
 @interface SignUpViewController ()
 
@@ -35,6 +36,17 @@
     txtPasswordConfirm.delegate = self;
     txtPassword.delegate = self;
     succes = NO;
+    
+    self.navigationItem.title = @"Sign Up";
+
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.navigationController.navigationBar setTranslucent: YES];
+    [self.navigationController.navigationBar setBarTintColor: [UIColor colorWithRed:0.231 green:0.741 blue:0.506 alpha:1]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,7 +143,12 @@
     
     if([title isEqualToString:@"OK"])
     {
-        [self.navigationController popViewControllerAnimated:YES];
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        [prefs setObject:txtUser.text forKey:@"UserName"];
+        [prefs setObject:txtPassword.text forKey:@"Password"];
+        
+        DWAppDelegate * delegate = (DWAppDelegate *)[[UIApplication sharedApplication] delegate];
+        delegate.window.rootViewController = delegate.tabBarController;
     }
 }
 
@@ -145,7 +162,17 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    if (textField == txtPasswordConfirm)
+    {
+        [textField resignFirstResponder];
+        [self callSignUp];
+    } else if (textField == txtUser) {
+        [txtEmail becomeFirstResponder];
+    } else if (textField == txtEmail) {
+        [txtPassword becomeFirstResponder];
+    } else if (textField == txtPassword) {
+        [txtPasswordConfirm becomeFirstResponder];
+    }
     
     return YES;
 }
@@ -181,6 +208,14 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];// this will do the trick
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+        [[self navigationController] setNavigationBarHidden:YES animated:YES];
+        [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleDefault];
+    }
+    [super viewWillDisappear:animated];
 }
 
 @end

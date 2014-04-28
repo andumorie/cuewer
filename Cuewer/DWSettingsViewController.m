@@ -1,0 +1,121 @@
+//
+//  DWSettingsViewController.m
+//  Cuewer
+//
+//  Created by Andu Morie on 08/04/14.
+//  Copyright (c) 2014 Demoweb. All rights reserved.
+//
+
+#import "DWSettingsViewController.h"
+#import "DWAppDelegate.h"
+#import "DWViewController.h"
+#import <MessageUI/MFMessageComposeViewController.h>
+
+@interface DWSettingsViewController ()
+@end
+
+@implementation DWSettingsViewController
+
+@synthesize table;
+@synthesize tableData;
+@synthesize username;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    username.text = [prefs stringForKey:@"UserName"];
+    
+    tableData = [NSArray arrayWithObjects: @"Invite friends", @"Buy credits", @"", @"Log out", nil];
+    
+    table = [[UITableView alloc] init];
+    table.frame = CGRectMake(0, 200, 320, 430);
+    table.dataSource = self;
+    table.delegate = self;
+    [table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SimpleTableItem"];
+    [table reloadData];
+    table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    table.scrollEnabled = NO;
+    [self.view addSubview:table];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [tableData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    UITableViewCell *cell = [table cellForRowAtIndexPath: indexPath];
+    if ([cell.textLabel.text isEqualToString: @"Log out"])
+    {
+        [self logOut];
+    } else if ([cell.textLabel.text isEqualToString: @"Invite friends"])
+    {
+        MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+        if([MFMessageComposeViewController canSendText])
+        {
+            controller.body = @"Hey, try out this awesome app! Link here";
+            controller.recipients = [NSArray arrayWithObjects: nil];
+            controller.messageComposeDelegate = self;
+            [self presentModalViewController:controller animated:YES];
+        }
+    }
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)logOut
+{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:@"" forKey: @"UserName"];
+    [prefs setObject:@"" forKey: @"Password"];
+
+    DWViewController * vc = [[DWViewController alloc] initWithNibName: @"DWViewController" bundle: nil];
+    DWAppDelegate * delegate = (DWAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.window setRootViewController: vc];
+    [self.tabBarController setSelectedIndex: 0];
+}
+
+@end

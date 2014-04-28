@@ -9,21 +9,90 @@
 #import "DWAppDelegate.h"
 #import "DWViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "DWHomeViewController.h"
+#import "DWContactsViewController.h"
+#import "DWAskViewController.h"
+#import "DWSettingsViewController.h"
 
 @implementation DWAppDelegate
 
+@synthesize homeNavigationController;
+@synthesize contactsNavigationController;
+@synthesize askNavigationController;
+@synthesize settingsNavigationController;
+@synthesize tabBarController;
+@synthesize window;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [FBLoginView class];
+    //[FBLoginView class];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    DWViewController * vc = [[DWViewController alloc] initWithNibName:@"DWViewController" bundle: nil];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    [prefs setObject:@"" forKey:@"UserName"];
+    NSString *userName = [prefs stringForKey:@"UserName"];
+    UINavigationController * nc;
     
-    UINavigationController * nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController = nc;
+    UIViewController *viewController0 = [[DWHomeViewController alloc] initWithNibName:@"DWHomeViewController" bundle:nil];
+    viewController0.tabBarItem.image = [UIImage imageNamed: @"HomeIcon"];
+    viewController0.tabBarItem.title = @"Home";
+    self.homeNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController0];
+    self.homeNavigationController.navigationBar.topItem.title = @"Home";
+    [self.homeNavigationController.navigationBar setTranslucent: YES];
+    [self.homeNavigationController.navigationBar setBarTintColor: [UIColor colorWithRed:0.231 green:0.741 blue:0.506 alpha:1]];
+    [self.homeNavigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.homeNavigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    UIViewController *viewController1 = [[DWContactsViewController alloc] initWithNibName:@"DWContactsViewController" bundle:nil];
+    viewController1.tabBarItem.image = [UIImage imageNamed: @"ContactsIcon"];
+    viewController1.tabBarItem.title = @"Contacts";
+    self.contactsNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController1];
+    self.contactsNavigationController.title = @"Contacts";
+    self.contactsNavigationController.navigationBar.topItem.title = @"Contacts";
+    [self.contactsNavigationController.navigationBar setTranslucent: YES];
+    [self.contactsNavigationController.navigationBar setBarTintColor: [UIColor colorWithRed:0.231 green:0.741 blue:0.506 alpha:1]];
+    [self.contactsNavigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.contactsNavigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    UIViewController *viewController2 = [[DWAskViewController alloc] initWithNibName:@"DWAskViewController" bundle:nil];
+    viewController2.tabBarItem.image = [UIImage imageNamed: @"AskIcon"];
+    viewController2.tabBarItem.title = @"Ask";
+    self.askNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController2];
+    self.askNavigationController.title = @"Ask";
+    self.askNavigationController.navigationBar.topItem.title = @"Ask";
+    [self.askNavigationController.navigationBar setTranslucent: YES];
+    [self.askNavigationController.navigationBar setBarTintColor: [UIColor colorWithRed:0.231 green:0.741 blue:0.506 alpha:1]];
+    [self.askNavigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.askNavigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    UIViewController *viewController3 = [[DWSettingsViewController alloc] initWithNibName:@"DWSettingsViewController" bundle:nil];
+    viewController3.tabBarItem.image = [UIImage imageNamed: @"SettingsIcon"];
+    viewController3.tabBarItem.title = @"Settings";
+    self.settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:viewController3];
+    self.settingsNavigationController.title = @"Settings";
+    self.settingsNavigationController.navigationBar.topItem.title = @"Settings";
+    [self.settingsNavigationController.navigationBar setTranslucent: YES];
+    [self.settingsNavigationController.navigationBar setBarTintColor: [UIColor colorWithRed:0.231 green:0.741 blue:0.506 alpha:1]];
+    [self.settingsNavigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.settingsNavigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:homeNavigationController,contactsNavigationController,askNavigationController,settingsNavigationController,nil];
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.231 green:0.741 blue:0.506 alpha:1];
+    
+    if (userName ==nil || [userName isEqualToString:@""]){
+        DWViewController * vc = [[DWViewController alloc] initWithNibName:@"DWViewController" bundle: nil];
+        nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        self.window.rootViewController = nc;
+    }else {
+        self.window.rootViewController = self.tabBarController;
+    }
+    
     [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 
