@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DWSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DWSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
+    UIAlertView *alert;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatar;
 @property (weak, nonatomic) IBOutlet UILabel *username;

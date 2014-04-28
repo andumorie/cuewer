@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "DWHomeViewController.h"
 #import "DWAppDelegate.h"
+#import "DWUserDefaults.h"
 
 @interface DWViewController ()
 
@@ -37,6 +38,7 @@
     // getting an NSString
     NSString *myString = [prefs stringForKey:@"UserName"];
     txtUser.text = myString;
+    
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
@@ -51,6 +53,12 @@
 
     imgProfile.image = image;
     
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [[self navigationController] setNavigationBarHidden:YES animated:NO];
 }
 
 // Logged-in user experience
@@ -124,6 +132,18 @@
 }
 
 - (IBAction)onLogin:(UIButton *)sender {
+    if ([txtUser.text isEqualToString:@""])
+    {
+        [txtUser becomeFirstResponder];
+        return;
+    }
+    
+    if ([txtPassword.text isEqualToString:@""])
+    {
+        [txtPassword becomeFirstResponder];
+        return;
+    }
+    
     
     [self.view endEditing:YES];
     [self showLoading];
@@ -160,6 +180,7 @@
 
 - (IBAction)onSignUp:(UIButton *)sender {
     SignUpViewController * signUpVC = [[SignUpViewController alloc] initWithNibName:@"SignUpViewController" bundle: nil];
+
     [self.navigationController pushViewController: signUpVC animated: YES];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
@@ -229,13 +250,17 @@
 - (void) showPopUp :(BOOL) suc
 {
     if (suc){
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Succes"
-                                                          message:@"You have successfully logged in!"
-                                                         delegate:self
-                                                cancelButtonTitle:nil
-                                                otherButtonTitles:nil];
-        [message addButtonWithTitle:@"OK"];
-        [message show];
+//        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Succes"
+//                                                          message:@"You have successfully logged in!"
+//                                                         delegate:self
+//                                                cancelButtonTitle:nil
+//                                                otherButtonTitles:nil];
+//        [message addButtonWithTitle:@"OK"];
+//        [message show];
+        [DWUserDefaults setUserName:txtUser.text];
+        [DWUserDefaults setPassword:txtPassword.text];
+        DWAppDelegate * delegate = (DWAppDelegate *)[[UIApplication sharedApplication] delegate];
+        delegate.window.rootViewController = delegate.tabBarController;
     }else {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
                                                           message:@"There was an error,please try again."
@@ -263,9 +288,6 @@
         btnLogout.hidden = NO;
         loginView.hidden = YES;
         */
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setObject:txtUser.text forKey:@"UserName"];
-        [prefs setObject:txtPassword.text forKey:@"Password"];
 
         DWAppDelegate * delegate = (DWAppDelegate *)[[UIApplication sharedApplication] delegate];
         delegate.window.rootViewController = delegate.tabBarController;

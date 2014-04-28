@@ -7,12 +7,14 @@
 //
 
 #import "DWHomeViewController.h"
+#import "DWUtils.h"
 
 @interface DWHomeViewController ()
 
 @end
 
 @implementation DWHomeViewController
+@synthesize tableData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,25 +27,45 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 5;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Identifier for retrieving reusable cells. static NSString
-    static NSString *CellIdentifier = @"CellView";
-    
-    UITableViewCell *cell = [self->tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //UILabel * lbl = [[UILabel alloc] init];
-    
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.font = [UIFont fontWithName:@"Myriad Pro" size:20];
+    cell.textLabel.textColor = [DWUtils colorFromHexString:@"#3e3e3e"];
+    cell.detailTextLabel.textColor = [DWUtils colorFromHexString:@"#888888"];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Myriad Pro" size:16];
+    cell.imageView.image = [UIImage imageNamed:@"cuewer58.png"];
+    cell.imageView.layer.cornerRadius = 28;
+    cell.imageView.layer.borderColor = (__bridge CGColorRef)([UIColor clearColor]);
+    cell.imageView.layer.borderWidth = 1.0f;
+    cell.imageView.layer.masksToBounds = NO;
+    cell.imageView.clipsToBounds = YES;
     
+    cell.textLabel.text = @"Nume";
+    cell.detailTextLabel.text = @"ultimul mesaj";
+    
+    if (indexPath.row % 2 != 0 && indexPath.row != 0) {
+        CGRect frame = CGRectMake(0, 0, 320, 60);
+        UIView *bgColor = [[UIView alloc] initWithFrame:frame];
+        [cell addSubview:bgColor];
+        [cell sendSubviewToBack:bgColor];
+        bgColor.backgroundColor = [DWUtils colorFromHexString:@"#fafafa"];
+    }
     return cell;
-    
-
 }
 
 - (void)viewDidLoad

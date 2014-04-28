@@ -11,9 +11,11 @@
 @interface DWHomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
     
     IBOutlet UITableView    * tableView;
-    
     NSMutableArray          * conversations;
     IBOutlet UITabBar       * tabBar;
+    
 }
+
+@property (strong, nonatomic) NSMutableArray *tableData;
 
 @end

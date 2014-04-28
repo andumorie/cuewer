@@ -13,6 +13,7 @@
 #import "DWContactsViewController.h"
 #import "DWAskViewController.h"
 #import "DWSettingsViewController.h"
+#import "DWUserDefaults.h"
 
 @implementation DWAppDelegate
 
@@ -29,11 +30,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:@"" forKey:@"UserName"];
-    NSString *userName = [prefs stringForKey:@"UserName"];
-    UINavigationController * nc;
     
     UIViewController *viewController0 = [[DWHomeViewController alloc] initWithNibName:@"DWHomeViewController" bundle:nil];
     viewController0.tabBarItem.image = [UIImage imageNamed: @"HomeIcon"];
@@ -81,7 +77,8 @@
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:homeNavigationController,contactsNavigationController,askNavigationController,settingsNavigationController,nil];
     self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:0.231 green:0.741 blue:0.506 alpha:1];
-    
+    UINavigationController * nc;
+    NSString * userName = [DWUserDefaults getUserName];
     if (userName ==nil || [userName isEqualToString:@""]){
         DWViewController * vc = [[DWViewController alloc] initWithNibName:@"DWViewController" bundle: nil];
         nc = [[UINavigationController alloc] initWithRootViewController:vc];

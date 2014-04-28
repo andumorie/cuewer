@@ -9,6 +9,7 @@
 #import "DWSettingsViewController.h"
 #import "DWAppDelegate.h"
 #import "DWViewController.h"
+#import "DWUserDefaults.h"
 #import <MessageUI/MFMessageComposeViewController.h>
 
 @interface DWSettingsViewController ()
@@ -54,6 +55,11 @@
     [self.view addSubview:table];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    NSLog(@"%@",[DWUserDefaults getUserName]);
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -87,7 +93,7 @@
     UITableViewCell *cell = [table cellForRowAtIndexPath: indexPath];
     if ([cell.textLabel.text isEqualToString: @"Log out"])
     {
-        [self logOut];
+        [self clickLogOut];
     } else if ([cell.textLabel.text isEqualToString: @"Invite friends"])
     {
         MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
@@ -106,11 +112,27 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) clickLogOut
+{
+    alert = [[UIAlertView alloc] initWithTitle:@"Logout" message:@"Are you sure you want to logout?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) { // Set buttonIndex == 0 to handel "Ok"/"Yes" button response
+        [self logOut];
+    }
+    if (buttonIndex == 0)
+    {
+        alertView.hidden = YES;
+    }
+    
+}
+
 - (void)logOut
 {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:@"" forKey: @"UserName"];
-    [prefs setObject:@"" forKey: @"Password"];
+    [DWUserDefaults setPassword:@""];
+    [DWUserDefaults setUserName:@""];
 
     DWViewController * vc = [[DWViewController alloc] initWithNibName: @"DWViewController" bundle: nil];
     DWAppDelegate * delegate = (DWAppDelegate *)[[UIApplication sharedApplication] delegate];

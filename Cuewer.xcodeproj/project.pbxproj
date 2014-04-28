@@ -34,6 +34,11 @@
 		A7CC800218F45C9C00E94E1C /* DWAskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CC800018F45C9C00E94E1C /* DWAskViewController.m */; };
 		A7CC800318F45C9C00E94E1C /* DWAskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7CC800118F45C9C00E94E1C /* DWAskViewController.xib */; };
 		C35016CC18E303C00075D812 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35016CB18E303C00075D812 /* FacebookSDK.framework */; };
+		FF426D41190EAE2600A5D6A6 /* DWUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FF426D40190EAE2600A5D6A6 /* DWUtils.m */; };
+		FF426D4A190EB74900A5D6A6 /* DWUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = FF426D49190EB74900A5D6A6 /* DWUserDefaults.m */; };
+		FF426D4E190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF426D4C190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m */; };
+		FF426D4F190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF426D4D190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib */; };
+		FF5A99CE190EFC6300258487 /* ContactObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5A99CD190EFC6300258487 /* ContactObject.m */; };
 		FF83BD5818EB371E003DD9A6 /* VerifyNet.m in Sources */ = {isa = PBXBuildFile; fileRef = FF83BD5718EB371E003DD9A6 /* VerifyNet.m */; };
 		FFEB05FF18E61D0B0057CAB9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEB05FE18E61D0B0057CAB9 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +92,15 @@
 		A7CC800118F45C9C00E94E1C /* DWAskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWAskViewController.xib; sourceTree = "<group>"; };
 		C35016CB18E303C00075D812 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		F043C7DF07FC4CF39BFF07FF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		FF426D3F190EAE2600A5D6A6 /* DWUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWUtils.h; sourceTree = "<group>"; };
+		FF426D40190EAE2600A5D6A6 /* DWUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWUtils.m; sourceTree = "<group>"; };
+		FF426D48190EB74900A5D6A6 /* DWUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWUserDefaults.h; sourceTree = "<group>"; };
+		FF426D49190EB74900A5D6A6 /* DWUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWUserDefaults.m; sourceTree = "<group>"; };
+		FF426D4B190EC1AA00A5D6A6 /* DWVerifyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWVerifyAccountViewController.h; sourceTree = "<group>"; };
+		FF426D4C190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWVerifyAccountViewController.m; sourceTree = "<group>"; };
+		FF426D4D190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWVerifyAccountViewController.xib; sourceTree = "<group>"; };
+		FF5A99CC190EFC6200258487 /* ContactObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactObject.h; sourceTree = "<group>"; };
+		FF5A99CD190EFC6300258487 /* ContactObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactObject.m; sourceTree = "<group>"; };
 		FF83BD5618EB371E003DD9A6 /* VerifyNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyNet.h; sourceTree = "<group>"; };
 		FF83BD5718EB371E003DD9A6 /* VerifyNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyNet.m; sourceTree = "<group>"; };
 		FFEB05FE18E61D0B0057CAB9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
@@ -122,6 +136,8 @@
 		A706D44218D8AE3400CAC3FF = {
 			isa = PBXGroup;
 			children = (
+				FF5A99CF190EFCB000258487 /* ContactObject */,
+				FF426D42190EB0CB00A5D6A6 /* Images */,
 				A706D45418D8AE3400CAC3FF /* Cuewer */,
 				A706D46D18D8AE3400CAC3FF /* CuewerTests */,
 				A706D44D18D8AE3400CAC3FF /* Frameworks */,
@@ -249,6 +265,31 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		FF426D42190EB0CB00A5D6A6 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		FF426D47190EB73300A5D6A6 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				FF426D48190EB74900A5D6A6 /* DWUserDefaults.h */,
+				FF426D49190EB74900A5D6A6 /* DWUserDefaults.m */,
+			);
+			name = UserDefaults;
+			sourceTree = "<group>";
+		};
+		FF5A99CF190EFCB000258487 /* ContactObject */ = {
+			isa = PBXGroup;
+			children = (
+				FF5A99CC190EFC6200258487 /* ContactObject.h */,
+				FF5A99CD190EFC6300258487 /* ContactObject.m */,
+			);
+			name = ContactObject;
+			sourceTree = "<group>";
+		};
 		FF83BD5518EB3700003DD9A6 /* VerifyNet */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,7 +302,10 @@
 		FF83BD5918EB4CF1003DD9A6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FF426D47190EB73300A5D6A6 /* UserDefaults */,
 				FF83BD5518EB3700003DD9A6 /* VerifyNet */,
+				FF426D3F190EAE2600A5D6A6 /* DWUtils.h */,
+				FF426D40190EAE2600A5D6A6 /* DWUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -272,6 +316,9 @@
 				A767567118D8B63C00897E3C /* SignUpViewController.h */,
 				A767567218D8B63C00897E3C /* SignUpViewController.m */,
 				A767567318D8B63C00897E3C /* SignUpViewController.xib */,
+				FF426D4B190EC1AA00A5D6A6 /* DWVerifyAccountViewController.h */,
+				FF426D4C190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m */,
+				FF426D4D190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib */,
 			);
 			name = SignUp;
 			sourceTree = "<group>";
@@ -336,6 +383,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Demoweb;
 				TargetAttributes = {
+					A706D44A18D8AE3400CAC3FF = {
+						DevelopmentTeam = Z7ZHL6UQDC;
+					};
 					A706D46518D8AE3400CAC3FF = {
 						TestTargetID = A706D44A18D8AE3400CAC3FF;
 					};
@@ -366,6 +416,7 @@
 			files = (
 				A735565E18EC67F900DEE406 /* DWHomeViewController.xib in Resources */,
 				A7CC800318F45C9C00E94E1C /* DWAskViewController.xib in Resources */,
+				FF426D4F190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib in Resources */,
 				A706D45918D8AE3400CAC3FF /* InfoPlist.strings in Resources */,
 				A706D48318D8AED700CAC3FF /* DWViewController.xib in Resources */,
 				A767567518D8B63C00897E3C /* SignUpViewController.xib in Resources */,
@@ -430,8 +481,12 @@
 				A767567418D8B63C00897E3C /* SignUpViewController.m in Sources */,
 				A706D45F18D8AE3400CAC3FF /* DWAppDelegate.m in Sources */,
 				A735565D18EC67F900DEE406 /* DWHomeViewController.m in Sources */,
+				FF426D4E190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m in Sources */,
 				A7CC7FFD18F44D7D00E94E1C /* DWContactsViewController.m in Sources */,
+				FF426D4A190EB74900A5D6A6 /* DWUserDefaults.m in Sources */,
 				A7070EC3190D9D830030F7D0 /* DWSettingsViewController.m in Sources */,
+				FF5A99CE190EFC6300258487 /* ContactObject.m in Sources */,
+				FF426D41190EAE2600A5D6A6 /* DWUtils.m in Sources */,
 				FF83BD5818EB371E003DD9A6 /* VerifyNet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +605,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/administrator/Documents/FacebookSDK,
@@ -559,6 +616,7 @@
 				GCC_PREFIX_HEADER = "Cuewer/Cuewer-Prefix.pch";
 				INFOPLIST_FILE = "Cuewer/Cuewer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -569,6 +627,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/administrator/Documents/FacebookSDK,
@@ -578,6 +638,7 @@
 				GCC_PREFIX_HEADER = "Cuewer/Cuewer-Prefix.pch";
 				INFOPLIST_FILE = "Cuewer/Cuewer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

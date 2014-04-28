@@ -10,6 +10,7 @@
 #import "VerifyNet.h"
 #import "AFNetworking.h"
 #import "DWAppDelegate.h"
+#import "DWVerifyAccountViewController.h"
 
 @interface SignUpViewController ()
 
@@ -143,12 +144,11 @@
     
     if([title isEqualToString:@"OK"])
     {
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        [prefs setObject:txtUser.text forKey:@"UserName"];
-        [prefs setObject:txtPassword.text forKey:@"Password"];
-        
-        DWAppDelegate * delegate = (DWAppDelegate *)[[UIApplication sharedApplication] delegate];
-        delegate.window.rootViewController = delegate.tabBarController;
+        DWVerifyAccountViewController * verifyAcc = [[DWVerifyAccountViewController alloc] initWithNibName:@"DWVerifyAccountViewController" bundle: nil];
+        verifyAcc.userName = txtUser.text;
+        verifyAcc.password = txtPassword.text;
+        [self.navigationController pushViewController: verifyAcc animated: YES];
+        [[self navigationController] setNavigationBarHidden:NO animated:YES];
     }
 }
 

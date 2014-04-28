@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DWAskViewController : UIViewController
+@interface DWAskViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate,UIPickerViewDataSource >{
+   
+    IBOutlet UIPickerView  *pickerCategory;
+    IBOutlet UIPickerView  *pickerQuestion;
+    IBOutlet UITextField   *txtQuestion;
+    IBOutlet UILabel      *lblCategory;
+    IBOutlet UILabel      *lblQuestion;
+    
+    IBOutlet UIView        *vwCategory;
+    IBOutlet UIView        *vwQuestion;
+}
+
+- (IBAction)showCategories:(id)sender;
+- (IBAction)showQuestions:(id)sender;
 
 @end
