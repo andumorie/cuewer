@@ -41,7 +41,28 @@
     self.extendedLayoutIncludesOpaqueBars = NO;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-    [self getAllContacts];
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
+        ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {
+            if (granted) {
+                // First time access has been granted, add the contact
+                [self getAllContacts];
+            } else {
+                // User denied access
+                // Display an alert telling user the contact could not be added
+            }
+        });
+    }
+    else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized) {
+        // The user has previously given access, add the contact
+       [self getAllContacts];
+    }
+    else {
+        // The user has previously denied access
+        // Send an alert telling user to change privacy setting in settings app
+    }
+   
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,8 +75,9 @@
 {
     NSMutableArray *allNumbers = [NSMutableArray new];
     NSMutableArray* contactsArray = [NSMutableArray new];
-
-    // open the default address book.
+    ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);
+    
+// open the default address book.
     ABAddressBookRef m_addressbook =  ABAddressBookCreateWithOptions(NULL, NULL);
 
     if (!m_addressbook)
@@ -128,6 +150,7 @@
         if (suc) {
             // do stuff with the contacts
             contacts = [responseObject valueForKey: @"data"];
+            [tableView reloadData];
 //            for (int i=0; i < data.count; i++) {
 //                NSDictionary *contact_data = data[i];
 //                NSString *displayName;
@@ -146,6 +169,13 @@
     
 }
 
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSLog(@"nr contacte %d",contacts.count);
+}
+
 - (NSDictionary *) indexKeyedDictionaryFromArray:(NSArray *)array
 {
     id objectInstance;
@@ -161,6 +191,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return contacts.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -181,7 +216,7 @@
     cell.textLabel.textColor = [DWUtils colorFromHexString:@"#3e3e3e"];
     cell.detailTextLabel.textColor = [DWUtils colorFromHexString:@"#888888"];
     cell.detailTextLabel.font = [UIFont fontWithName:@"Myriad Pro" size:16];
-    cell.imageView.image = [UIImage imageNamed:@"cuewer58.png"];
+    cell.imageView.image = [UIImage imageNamed:@"contacts.jpg"];
     cell.imageView.layer.cornerRadius = 28;
     cell.imageView.layer.borderColor = (__bridge CGColorRef)([UIColor clearColor]);
     cell.imageView.layer.borderWidth = 1.0f;

@@ -34,6 +34,8 @@
 		A7CC800218F45C9C00E94E1C /* DWAskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CC800018F45C9C00E94E1C /* DWAskViewController.m */; };
 		A7CC800318F45C9C00E94E1C /* DWAskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7CC800118F45C9C00E94E1C /* DWAskViewController.xib */; };
 		C35016CC18E303C00075D812 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35016CB18E303C00075D812 /* FacebookSDK.framework */; };
+		FF26229C190FE4730017338C /* contacts.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF26229B190FE4730017338C /* contacts.jpg */; };
+		FF2622A4190FE90F0017338C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF2622A3190FE90F0017338C /* QuartzCore.framework */; };
 		FF426D41190EAE2600A5D6A6 /* DWUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FF426D40190EAE2600A5D6A6 /* DWUtils.m */; };
 		FF426D4A190EB74900A5D6A6 /* DWUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = FF426D49190EB74900A5D6A6 /* DWUserDefaults.m */; };
 		FF426D4E190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF426D4C190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m */; };
@@ -93,6 +95,8 @@
 		A7CC800118F45C9C00E94E1C /* DWAskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWAskViewController.xib; sourceTree = "<group>"; };
 		C35016CB18E303C00075D812 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		F043C7DF07FC4CF39BFF07FF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		FF26229B190FE4730017338C /* contacts.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = contacts.jpg; sourceTree = "<group>"; };
+		FF2622A3190FE90F0017338C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FF426D3F190EAE2600A5D6A6 /* DWUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWUtils.h; sourceTree = "<group>"; };
 		FF426D40190EAE2600A5D6A6 /* DWUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWUtils.m; sourceTree = "<group>"; };
 		FF426D48190EB74900A5D6A6 /* DWUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWUserDefaults.h; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF2622A4190FE90F0017338C /* QuartzCore.framework in Frameworks */,
 				A706D45118D8AE3400CAC3FF /* CoreGraphics.framework in Frameworks */,
 				FFEB05FF18E61D0B0057CAB9 /* FacebookSDK.framework in Frameworks */,
 				C35016CC18E303C00075D812 /* FacebookSDK.framework in Frameworks */,
@@ -160,6 +165,7 @@
 		A706D44D18D8AE3400CAC3FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FF2622A3190FE90F0017338C /* QuartzCore.framework */,
 				FFEB05FE18E61D0B0057CAB9 /* FacebookSDK.framework */,
 				C35016CB18E303C00075D812 /* FacebookSDK.framework */,
 				A706D44E18D8AE3400CAC3FF /* Foundation.framework */,
@@ -271,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				FF5A99D0190F7F0800258487 /* cuewer58.png */,
+				FF26229B190FE4730017338C /* contacts.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -419,6 +426,7 @@
 			files = (
 				A735565E18EC67F900DEE406 /* DWHomeViewController.xib in Resources */,
 				A7CC800318F45C9C00E94E1C /* DWAskViewController.xib in Resources */,
+				FF26229C190FE4730017338C /* contacts.jpg in Resources */,
 				FF426D4F190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib in Resources */,
 				A706D45918D8AE3400CAC3FF /* InfoPlist.strings in Resources */,
 				A706D48318D8AED700CAC3FF /* DWViewController.xib in Resources */,
