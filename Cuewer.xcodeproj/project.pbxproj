@@ -39,6 +39,7 @@
 		FF426D4E190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF426D4C190EC1AA00A5D6A6 /* DWVerifyAccountViewController.m */; };
 		FF426D4F190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF426D4D190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib */; };
 		FF5A99CE190EFC6300258487 /* ContactObject.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5A99CD190EFC6300258487 /* ContactObject.m */; };
+		FF5A99D1190F7F0800258487 /* cuewer58.png in Resources */ = {isa = PBXBuildFile; fileRef = FF5A99D0190F7F0800258487 /* cuewer58.png */; };
 		FF83BD5818EB371E003DD9A6 /* VerifyNet.m in Sources */ = {isa = PBXBuildFile; fileRef = FF83BD5718EB371E003DD9A6 /* VerifyNet.m */; };
 		FFEB05FF18E61D0B0057CAB9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEB05FE18E61D0B0057CAB9 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		FF426D4D190EC1AA00A5D6A6 /* DWVerifyAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWVerifyAccountViewController.xib; sourceTree = "<group>"; };
 		FF5A99CC190EFC6200258487 /* ContactObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactObject.h; sourceTree = "<group>"; };
 		FF5A99CD190EFC6300258487 /* ContactObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactObject.m; sourceTree = "<group>"; };
+		FF5A99D0190F7F0800258487 /* cuewer58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cuewer58.png; path = Cuewer/Images.xcassets/AppIcon.appiconset/cuewer58.png; sourceTree = "<group>"; };
 		FF83BD5618EB371E003DD9A6 /* VerifyNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyNet.h; sourceTree = "<group>"; };
 		FF83BD5718EB371E003DD9A6 /* VerifyNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyNet.m; sourceTree = "<group>"; };
 		FFEB05FE18E61D0B0057CAB9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		FF426D42190EB0CB00A5D6A6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FF5A99D0190F7F0800258487 /* cuewer58.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				A706D45918D8AE3400CAC3FF /* InfoPlist.strings in Resources */,
 				A706D48318D8AED700CAC3FF /* DWViewController.xib in Resources */,
 				A767567518D8B63C00897E3C /* SignUpViewController.xib in Resources */,
+				FF5A99D1190F7F0800258487 /* cuewer58.png in Resources */,
 				A735566118EC68C500DEE406 /* CellView.xib in Resources */,
 				A7CC7FFE18F44D7D00E94E1C /* DWContactsViewController.xib in Resources */,
 				A7070EC4190D9D830030F7D0 /* DWSettingsViewController.xib in Resources */,

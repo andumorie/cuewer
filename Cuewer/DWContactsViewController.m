@@ -21,7 +21,6 @@
 @implementation DWContactsViewController
 
 @synthesize contacts;
-@synthesize table;
 @synthesize tableData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,16 +42,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [self getAllContacts];
-
-    table = [[UITableView alloc] init];
-    table.frame = CGRectMake(0, 200, 320, 430);
-    table.dataSource = self;
-    table.delegate = self;
-    [table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    [table reloadData];
-    table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    table.scrollEnabled = NO;
-    [self.view addSubview:table];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,7 +56,7 @@
     NSMutableArray* contactsArray = [NSMutableArray new];
 
     // open the default address book.
-    ABAddressBookRef m_addressbook = ABAddressBookCreate();
+    ABAddressBookRef m_addressbook =  ABAddressBookCreateWithOptions(NULL, NULL);
 
     if (!m_addressbook)
     {
@@ -122,7 +111,7 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *userName = [prefs stringForKey:@"UserName"];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:[NSString stringWithFormat: @"%@%@", @"http://0.0.0.0:3000/users/get_contacts/", userName] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[NSString stringWithFormat: @"%@%@", @"http://cuewer-api.herokuapp.com/users/get_contacts/", userName] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", [responseObject valueForKey: @"data"]);
 
         // parse responseObject here
@@ -181,7 +170,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [table dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
