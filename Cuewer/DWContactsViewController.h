@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DWContactsViewController : UIViewController
+@interface DWContactsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+
+}
+
+@property (strong, nonatomic) NSMutableArray *tableData;
+@property (strong, nonatomic) NSArray *contacts;
+@property (strong, nonatomic) IBOutlet UITableView *table;
 
 @end

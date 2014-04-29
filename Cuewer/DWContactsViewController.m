@@ -12,12 +12,17 @@
 #import <AddressBook/ABRecord.h>
 #import <AddressBook/AddressBook.h>
 #import "AFNetworking.h"
+#import "DWUtils.h"
 
 @interface DWContactsViewController ()
 
 @end
 
 @implementation DWContactsViewController
+
+@synthesize contacts;
+@synthesize table;
+@synthesize tableData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +43,16 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [self getAllContacts];
+
+    table = [[UITableView alloc] init];
+    table.frame = CGRectMake(0, 200, 320, 430);
+    table.dataSource = self;
+    table.delegate = self;
+    [table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    [table reloadData];
+    table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    table.scrollEnabled = NO;
+    [self.view addSubview:table];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,15 +99,16 @@
         for (int i=0; i < 6; i++) {
             CFStringRef tempNumberref = ABMultiValueCopyValueAtIndex(number, i);
             strNumber = (__bridge  NSString *)tempNumberref;
-            strNumber = [strNumber stringByReplacingOccurrencesOfString: @"+" withString: @""];
-            strNumber = [strNumber stringByReplacingOccurrencesOfString: @" " withString: @""];
-            strNumber = [strNumber stringByReplacingOccurrencesOfString: @"(" withString: @""];
-            strNumber = [strNumber stringByReplacingOccurrencesOfString: @")" withString: @""];
             if (strNumber) {
+                strNumber = [strNumber stringByReplacingOccurrencesOfString: @"+" withString: @""];
+                strNumber = [strNumber stringByReplacingOccurrencesOfString: @" " withString: @""];
+                strNumber = [strNumber stringByReplacingOccurrencesOfString: @"(" withString: @""];
+                strNumber = [strNumber stringByReplacingOccurrencesOfString: @")" withString: @""];
+
                 [numbers addObject: strNumber];
                 [allNumbers addObject: strNumber];
+                NSLog(@"%@", strNumber);
             }
-            NSLog(@"%@", strNumber);
         }
         [tempContactDic setValue: [self indexKeyedDictionaryFromArray: numbers] forKey:@"number"];
         
@@ -106,8 +122,8 @@
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSString *userName = [prefs stringForKey:@"UserName"];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:[NSString stringWithFormat: @"%@%@", @"http://0.0.0.0:3000/users/get_contacts", userName] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+    [manager POST:[NSString stringWithFormat: @"%@%@", @"http://0.0.0.0:3000/users/get_contacts/", userName] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", [responseObject valueForKey: @"data"]);
 
         // parse responseObject here
         NSString *success = [responseObject valueForKey:@"success"];
@@ -121,8 +137,19 @@
         }
 
         if (suc) {
-            NSMutableArray * contacts = [responseObject valueForKey: @"data"];
             // do stuff with the contacts
+            contacts = [responseObject valueForKey: @"data"];
+//            for (int i=0; i < data.count; i++) {
+//                NSDictionary *contact_data = data[i];
+//                NSString *displayName;
+//                if ([contact_data[@"display_name"] isEqual:[NSNull null]]) {
+//                    displayName = contact_data[@"username"];
+//                }
+//                else {
+//                    displayName = contact_data[@"display_name"];
+//                }
+//                NSLog(@"%@", displayName);
+//            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -141,5 +168,56 @@
 
     return (NSDictionary *) mutableDictionary;
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return contacts.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [table dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.font = [UIFont fontWithName:@"Myriad Pro" size:20];
+    cell.textLabel.textColor = [DWUtils colorFromHexString:@"#3e3e3e"];
+    cell.detailTextLabel.textColor = [DWUtils colorFromHexString:@"#888888"];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Myriad Pro" size:16];
+    cell.imageView.image = [UIImage imageNamed:@"cuewer58.png"];
+    cell.imageView.layer.cornerRadius = 28;
+    cell.imageView.layer.borderColor = (__bridge CGColorRef)([UIColor clearColor]);
+    cell.imageView.layer.borderWidth = 1.0f;
+    cell.imageView.layer.masksToBounds = NO;
+    cell.imageView.clipsToBounds = YES;
+
+    NSString *displayName;
+    if ([contacts[indexPath.row][@"display_name"] isEqual:[NSNull null]]) {
+        displayName = contacts[indexPath.row][@"username"];
+    }
+    else {
+        displayName = contacts[indexPath.row][@"display_name"];
+    }
+    cell.textLabel.text = displayName;
+    //cell.detailTextLabel.text = @"ultimul mesaj";
+
+    if (indexPath.row % 2 != 0 && indexPath.row != 0) {
+        CGRect frame = CGRectMake(0, 0, 320, 60);
+        UIView *bgColor = [[UIView alloc] initWithFrame:frame];
+        [cell addSubview:bgColor];
+        [cell sendSubviewToBack:bgColor];
+        bgColor.backgroundColor = [DWUtils colorFromHexString:@"#fafafa"];
+    }
+    return cell;
+}
+
 
 @end
